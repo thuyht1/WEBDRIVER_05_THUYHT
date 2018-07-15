@@ -1,6 +1,5 @@
 package selenium_api;
 
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -13,6 +12,8 @@ import org.testng.annotations.Test;
 public class Topic_01_CheckEnvironment {
     WebDriver driver;
 
+    
+    
 	@Test
 	public void TC_01_CheckUrlAndTitle() {
 		System.out.println("Check homepage title");
