@@ -26,7 +26,7 @@ public class Topic_02_XPath_CSS {
 
 		driver.get("http://live.guru99.com");
 		
-		email = "kimthuy.ht106" + randomNumber() + "@gmail.com";
+		//email = "kimthuy.ht106" + randomNumber() + "@gmail.com";
 		
 	}
 
@@ -123,13 +123,13 @@ public class Topic_02_XPath_CSS {
 		
 		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
 		
-		driver.findElement(By.xpath(".//*[@id='firstname']")).sendKeys("Ho");
-		driver.findElement(By.xpath(".//*[@id='middlename']")).sendKeys("Kim");
-		driver.findElement(By.xpath(".//*[@id='lastname']")).sendKeys("Thuy");
-		driver.findElement(By.xpath(".//*[@id='email_address']")).sendKeys("kimthuy.ht106@gmail.com");
-		driver.findElement(By.xpath(".//*[@id='password']")).sendKeys("123456");
-		driver.findElement(By.xpath(".//*[@id='confirmation']")).sendKeys("123456");
-		driver.findElement(By.xpath(".//*[@id='form-validate']/div[2]/button")).click();
+		driver.findElement(By.xpath("//*[@id='firstname']")).sendKeys("Ho");
+		driver.findElement(By.xpath("//*[@id='middlename']")).sendKeys("Kim");
+		driver.findElement(By.xpath("//*[@id='lastname']")).sendKeys("Thuy");
+		driver.findElement(By.xpath("//*[@id='email_address']")).sendKeys("kimthuy.ht106" + ((int) (Math.random() * 100) + 1) + "@gmail.com");;
+		driver.findElement(By.xpath("//*[@id='password']")).sendKeys("123456");
+		driver.findElement(By.xpath("//*[@id='confirmation']")).sendKeys("123456");
+		driver.findElement(By.xpath("//*[@id='form-validate']/div[2]/button")).click();
 		
 		
 		WebElement emailTxt = driver.findElement(By.xpath("//button[@id='email_address']"));
@@ -137,13 +137,16 @@ public class Topic_02_XPath_CSS {
 		
 		String SuccesMsg = driver.findElement(By.xpath("//div[@id='advice-required-entry-pass']")).getText();
 		Assert.assertEquals("Thank you for registering with Main Website Store.", SuccesMsg);
+		
+		driver.findElement(By.xpath("//header[@id='header']//span[text()='Account']")).click();
+		driver.findElement(By.xpath("//a[@title='Log Out']")).click();
 	}
 
-	public int randomNumber() {
+	/*public int randomNumber() {
 		Random random = new Random();
 		int number = random.nextInt(999999);
 		return number;
-	}
+	}*/
 
 	@AfterClass
 	public void afterClass() {
