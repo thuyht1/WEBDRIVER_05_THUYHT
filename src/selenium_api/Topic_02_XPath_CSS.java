@@ -123,13 +123,13 @@ public class Topic_02_XPath_CSS {
 		
 		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
 		
-		driver.findElement(By.xpath("//*[@id='firstname']")).sendKeys("Ho");
-		driver.findElement(By.xpath("//*[@id='middlename']")).sendKeys("Kim");
-		driver.findElement(By.xpath("//*[@id='lastname']")).sendKeys("Thuy");
-		driver.findElement(By.xpath("//*[@id='email_address']")).sendKeys("kimthuy.ht106" + ((int) (Math.random() * 100) + 1) + "@gmail.com");;
-		driver.findElement(By.xpath("//*[@id='password']")).sendKeys("123456");
-		driver.findElement(By.xpath("//*[@id='confirmation']")).sendKeys("123456");
-		driver.findElement(By.xpath("//*[@id='form-validate']/div[2]/button")).click();
+		driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys("Ho");
+		driver.findElement(By.xpath("//input[@id='middlename']")).sendKeys("Kim");
+		driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys("Thuy");
+		driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys("kimthuy.ht106" + ((int) (Math.random() * 100) + 1) + "@gmail.com");;
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456");
+		driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys("123456");
+		driver.findElement(By.xpath("//input[@id='form-validate']/div[2]/button")).click();
 		
 		
 		WebElement emailTxt = driver.findElement(By.xpath("//button[@id='email_address']"));
