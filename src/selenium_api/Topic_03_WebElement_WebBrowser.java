@@ -5,9 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+//import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,21 +18,19 @@ public class Topic_03_WebElement_WebBrowser {
 	@BeforeClass
 	public void beforeClass() {
 
-		// driver = new FirefoxDriver();
+		 driver = new FirefoxDriver();
 
 		// Chrome
 		// System.setProperty("webdriver.chrome.driver", ".\\driver\\chromedriver.exe");
 		// driver = new ChromeDriver();
 
 		// IE
-		System.setProperty("webdriver.ie.driver", ".\\driver\\IEDriverServer.exe");
-		driver = new InternetExplorerDriver();
+		//System.setProperty("webdriver.ie.driver", ".\\driver\\IEDriverServer.exe");
+		//driver = new InternetExplorerDriver();
 
 		//System.setProperty("webdriver.ie.driver","driver path\\IEDriverServer.exe");
 		//WebDriver driver=new InternetExplorerDriver();
-		
-		
-		
+			
 		driver.get("http://daominhdam.890m.com/");
 
 	}
@@ -108,7 +106,6 @@ public class Topic_03_WebElement_WebBrowser {
 			} else {
 				System.out.println("Button 1 is disabled");
 			}
-
 		}
 
 		String job1 = "//select[@id='job1']";
@@ -127,7 +124,6 @@ public class Topic_03_WebElement_WebBrowser {
 		} catch (NoSuchElementException e) {
 			return false;
 		}
-
 	}
 
 	@Test
@@ -165,14 +161,12 @@ public class Topic_03_WebElement_WebBrowser {
 			} else {
 				System.out.println("Slider 2 is disabled");
 			}
-
 			String btn_dis = "//*[@id='button-disabled']";
 			if (isElementEnabled(driver, btn_dis)) {
 				System.out.println("Button dis is enabled");
 			} else {
 				System.out.println("Button dis is disabled");
 			}
-
 		}
 
 		String job2 = "//select[@id='job2']";
@@ -191,11 +185,10 @@ public class Topic_03_WebElement_WebBrowser {
 		} catch (NoSuchElementException e) {
 			return false;
 		}
-
 	}
 
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		driver.close();
 	}
 }

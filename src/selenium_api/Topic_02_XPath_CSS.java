@@ -1,5 +1,6 @@
 package selenium_api;
 
+
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +15,7 @@ import org.testng.annotations.Test;
 
 public class Topic_02_XPath_CSS {
 	WebDriver driver;
-	private String email;
+	
 
 	@BeforeClass
 	public void beforeClass() {
@@ -25,9 +26,6 @@ public class Topic_02_XPath_CSS {
 		driver.manage().window().maximize();
 
 		driver.get("http://live.guru99.com");
-		
-		//email = "kimthuy.ht106" + randomNumber() + "@gmail.com";
-		
 	}
 
 	@Test
@@ -55,7 +53,6 @@ public class Topic_02_XPath_CSS {
 
 		String createAccountUrl = driver.getCurrentUrl();
 		Assert.assertEquals("http://live.guru99.com/index.php/customer/account/create/", createAccountUrl);
-
 	}
 
 	@Test
@@ -63,18 +60,11 @@ public class Topic_02_XPath_CSS {
 		
 		WebElement myAccountLink = driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']"));
 		myAccountLink.click();
-		Thread.sleep(3000);
-
-		driver.findElement(By.xpath("//input[@id='email']"));
-		driver.findElement(By.xpath("//input[@id='pass']"));
-		driver.findElement(By.xpath("//button[@name='send']")).click();
-
-		String emailErrorMsg = driver.findElement(By.xpath("//div[@id='advice-required-entry-email']")).getText();
-		Assert.assertEquals("This is a required field.", emailErrorMsg);
-
-		String passErrorMsg = driver.findElement(By.xpath("//div[@id='advice-required-entry-pass']")).getText();
-		Assert.assertEquals("This is a required field.", passErrorMsg);
-
+		driver.findElement(By.id("send2")).click();
+		String usernameEmptyMessage = driver.findElement(By.id("advice-required-entry-email")).getText();
+		Assert.assertEquals(usernameEmptyMessage, "This is a required field.");
+		String passwordEmptyMessage = driver.findElement(By.id("advice-required-entry-pass")).getText();
+		Assert.assertEquals(passwordEmptyMessage, "This is a required field.");
 	}
 	
 	@Test 
@@ -82,74 +72,59 @@ public class Topic_02_XPath_CSS {
 		
 		WebElement myAccountLink = driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']"));
 		myAccountLink.click();
-		Thread.sleep(3000);
 
 		driver.findElement(By.xpath("//input[@id='email']")).sendKeys("123434234@12312.123123");
-		//driver.findElement(By.xpath("//input[@id='pass']"));
-		driver.findElement(By.xpath("//button[@name='send']")).click();
-
-		String emailErrorMsg = driver.findElement(By.xpath("//div[@id='advice-required-entry-email']")).getText();
-		Assert.assertEquals("Please enter a valid email address. For example johndoe@domain.com.", emailErrorMsg);
-
-		String passErrorMsg = driver.findElement(By.xpath("//div[@id='advice-required-entry-pass']")).getText();
-		Assert.assertEquals("This is a required field.", passErrorMsg);
-		
-	}
+		driver.findElement(By.id("send2")).click();
+		String usernameInvalidMessage = driver.findElement(By.id("advice-validate-email-email")).getText();
+		Assert.assertEquals(usernameInvalidMessage,"Please enter a valid email address. For example johndoe@domain.com.");
+		}
 	
 	@Test 
 	public void TC_04_IncorectPass() throws InterruptedException {
 		
 		WebElement myAccountLink = driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']"));
 		myAccountLink.click();
-		Thread.sleep(3000);
 
-		driver.findElement(By.xpath("//input[@id='email']")).sendKeys("automation@gmail.com");
 		driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("123");
 		driver.findElement(By.xpath("//button[@name='send']")).click();
 
-		String emailErrorMsg = driver.findElement(By.xpath("//div[@id='advice-required-entry-email']")).getText();
-		Assert.assertEquals("Please enter a valid email address. For example johndoe@domain.com.", emailErrorMsg);
-
-		String passErrorMsg = driver.findElement(By.xpath("//div[@id='advice-required-entry-pass']")).getText();
-		Assert.assertEquals("This is a required field.", passErrorMsg);
-		
+		String passErrorMsg = driver.findElement(By.id("advice-validate-password-pass")).getText();
+		Assert.assertEquals("Please enter 6 or more characters without leading or trailing spaces.", passErrorMsg);		
 	}
 
 	@Test
 	public void TC_05_CreateAccount() throws InterruptedException {
 		WebElement myAccountLink = driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']"));
 		myAccountLink.click();
-		Thread.sleep(3000);
 		
 		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
 		
 		driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys("Ho");
 		driver.findElement(By.xpath("//input[@id='middlename']")).sendKeys("Kim");
 		driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys("Thuy");
-		driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys("kimthuy.ht106" + ((int) (Math.random() * 100) + 1) + "@gmail.com");;
+		driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys("kimthuy.ht106" + randomEmail() + "@gmail.com");
 		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456");
 		driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys("123456");
-		driver.findElement(By.xpath("//input[@id='form-validate']/div[2]/button")).click();
+		driver.findElement(By.xpath("//button[@title='Register']")).click();
 		
+		//WebElement emailTxt = driver.findElement(By.xpath("//button[@id='email_address']"));
+		//emailTxt.sendKeys(email);
 		
-		WebElement emailTxt = driver.findElement(By.xpath("//button[@id='email_address']"));
-		emailTxt.sendKeys(email);
-		
-		String SuccesMsg = driver.findElement(By.xpath("//div[@id='advice-required-entry-pass']")).getText();
+		String SuccesMsg = driver.findElement(By.xpath("//span[text()='Thank you for registering with Main Website Store.']")).getText();
 		Assert.assertEquals("Thank you for registering with Main Website Store.", SuccesMsg);
 		
 		driver.findElement(By.xpath("//header[@id='header']//span[text()='Account']")).click();
 		driver.findElement(By.xpath("//a[@title='Log Out']")).click();
 	}
 
-	/*public int randomNumber() {
+	public int randomEmail() {
 		Random random = new Random();
 		int number = random.nextInt(999999);
 		return number;
-	}*/
+	}
 
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		driver.close();
 	}
 }
