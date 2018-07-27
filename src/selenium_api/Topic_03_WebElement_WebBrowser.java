@@ -45,14 +45,14 @@ public class Topic_03_WebElement_WebBrowser {
 		} else
 			System.out.println("Email Textbox is disable");
 
-		WebElement ageCheckbox = driver.findElement(By.xpath(".//input[@id='under_18']"));
+		WebElement ageCheckbox = driver.findElement(By.xpath("//input[@id='under_18']"));
 		Boolean CheckedIsDisplayed = ageCheckbox.isDisplayed();
 		if (CheckedIsDisplayed == true) {
 			ageCheckbox.click();
 		} else
 			System.out.println("Age is disable");
 
-		WebElement eduTextarea = driver.findElement(By.xpath(".//textarea[@id='edu']"));
+		WebElement eduTextarea = driver.findElement(By.xpath("//textarea[@id='edu']"));
 		Boolean EduIsDisplayed = eduTextarea.isDisplayed();
 
 		if (EduIsDisplayed == true) {
@@ -93,14 +93,14 @@ public class Topic_03_WebElement_WebBrowser {
 		} else {
 			System.out.println("Text Area edu is disabled");
 
-			String slider1 = "//*[@id='slider-1']";
+			String slider1 = "//input[@id='slider-1']";
 			if (isElementEnabled(driver, slider1)) {
 				System.out.println("Slider 1 is enabled");
 			} else {
 				System.out.println("Slider 1 is disabled");
 			}
 
-			String btn_anable = "//*[@id='button-enabled']";
+			String btn_anable = "//button[@id='button-enabled']";
 			if (isElementEnabled(driver, btn_anable)) {
 				System.out.println("Button 1 is enabled");
 			} else {
@@ -155,13 +155,13 @@ public class Topic_03_WebElement_WebBrowser {
 		} else {
 			System.out.println("Text  biography Area is disabled");
 
-			String slider2 = "//*[@id='slider-2']";
+			String slider2 = "//input[@id='slider-2']";
 			if (isElementEnabled(driver, slider2)) {
 				System.out.println("Slider 2 is enabled");
 			} else {
 				System.out.println("Slider 2 is disabled");
 			}
-			String btn_dis = "//*[@id='button-disabled']";
+			String btn_dis = "//button[@id='button-disabled']";
 			if (isElementEnabled(driver, btn_dis)) {
 				System.out.println("Button dis is enabled");
 			} else {

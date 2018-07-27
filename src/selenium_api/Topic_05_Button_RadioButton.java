@@ -75,7 +75,7 @@ public class Topic_05_Button_RadioButton {
 	public void TC_05_CancelAlert() {
 		driver.get("http://daominhdam.890m.com/#");
 
-		driver.findElement(By.xpath("//button[text()='Click for JS Prompt']")).click();
+		driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
 
 		Alert alert = driver.switchTo().alert();
 		alert.dismiss();
@@ -96,7 +96,7 @@ public class Topic_05_Button_RadioButton {
 		alert.accept();
 
 		WebElement resultText = driver.findElement(By.xpath("//p[@id='result']"));
-		Assert.assertEquals("You entered:" + name, resultText.getText());
+		Assert.assertEquals("You entered: " + name, resultText.getText());
 	}
 
 	public void clickElementByJavascript(WebElement element) {
