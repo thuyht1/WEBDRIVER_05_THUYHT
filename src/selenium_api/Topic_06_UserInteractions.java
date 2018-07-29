@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
@@ -21,9 +22,10 @@ public class Topic_06_UserInteractions {
 	
 	@BeforeClass
 	public void beforeClass() {
-		driver = new FirefoxDriver();
+		//driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", ".\\driver\\chromedriver.exe");
+		driver = new ChromeDriver();
 	}
-
 
 	@Test
 	public void TC_01_MoveMouseToElement() throws Exception {
@@ -95,6 +97,37 @@ public class Topic_06_UserInteractions {
 		Alert alert = driver.switchTo().alert();
 		Assert.assertEquals("The Button was double-clicked.", alert.getText());
 		alert.accept();
+	}
+	
+	@Test
+	public void TC_04_RightClick() throws Exception {
+		driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		
+		//Right Click
+		WebElement rightClickMe = driver.findElement(By.xpath("//span[text()='right click me']"));
+		Actions action = new Actions(driver);
+		action.contextClick(rightClickMe);
+		
+		// Hover to Quit
+		WebElement quitBeforeHover = driver.findElement(By.xpath("//li[contains(@class,'context-menu-icon-quit')]/span[text()='Quit']"));
+		action.moveToElement(quitBeforeHover).perform();
+		Thread.sleep(2000);
+		
+		WebElement quitAfterHover = driver.findElement(By.xpath("//li[contains(@class,'context-menu-visible')and contains(@class,'context-menu-hover')]/span[text()='Quit']"));
+		
+		//Verify hover success
+		Assert.assertTrue(quitAfterHover.isDisplayed());
+		
+		//Click to quit
+		action.click(quitAfterHover).perform();
+		
+		Alert alert = driver.switchTo().alert();
+		Assert.assertEquals("clicked: quit", alert.getText());
+		alert.accept();
+		
+		
 	}
 
 	@AfterClass
