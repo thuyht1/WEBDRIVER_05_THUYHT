@@ -15,7 +15,26 @@ import org.testng.annotations.Test;
 
 public class Guid {
     WebDriver driver;
-
+    
+    
+  //firefox <=47 + selenium version 2.x.x
+  	// driver = new FirefoxDriver();
+  		
+  	//Firefox >= 48 + senium version 3.x.x
+  	// System.setProperty("getdriver.gecko.driver", "\\driver\\geckodriver.exe");
+  	// driver = new FirefoxDriver();
+  		
+  	// Chrome
+  	//System.setProperty("webdriver.chrome.diver", ".\\driver\\chromedriver.exe");
+  	//driver = new ChromeDriver();
+  	
+  	// IE 
+  	// System.setProperty("webdriver.ie.diver", ".\\driver\\IEdriverServer.exe");
+  	// driver = new InternetExplorerDriver();
+    
+    //format code: ctrl + shift + f
+    
+    // ctrl + shift + o: import library
     
 	@Test
 	public void TC_01() {

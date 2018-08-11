@@ -118,7 +118,7 @@ public class Topic_07_Iframe_Windows {
 		if (iframeClosePopup.size() > 0) {
 			driver.switchTo().frame(iframeClosePopup.get(0));
 
-			WebElement closePopup = driver.findElement(By.xpath("//div[@id='div-close'"));
+			WebElement closePopup = driver.findElement(By.xpath("//div[@id='div-close']"));
 			closePopup.click();
 		}
 

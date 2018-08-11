@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="LIVE GURU" parallel="false">
+ 
+    <test name="Run on CHROME">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="username" value="automationvalid@gmail.com"/>
+    <parameter name="password" value="111111"/>
+    <classes>
+      <class 
+      name="selenium_testNG.TestNG_02_Parameter_Multibrowser"/>
+    </classes>
+  </test> 
+  
+    <test name="Run on FIREFOX">
+    <parameter name="browser" value="firefox"/>
+    <parameter name="username" value="automationvalid@gmail.com"/>
+    <parameter name="password" value="111111"/>
+    <classes>
+      <class 
+      name="selenium_testNG.TestNG_02_Parameter_Multibrowser"/>
+    </classes>
+  </test> 
+  
+</suite> 
+
+
+
+
+
+
+
+
+
+
+

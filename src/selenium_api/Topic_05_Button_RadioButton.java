@@ -26,7 +26,7 @@ public class Topic_05_Button_RadioButton {
 
 	}
 
-	@Test
+	
 	public void TC_01_Button() {
 		driver.get("http://live.guru99.com/");
 
@@ -40,24 +40,31 @@ public class Topic_05_Button_RadioButton {
 	}
 
 	@Test
-	public void TC_02_RadioButton() {
+	public void TC_02_Checkbox() {
 		driver.get("http://demos.telerik.com/kendo-ui/styling/checkboxes");
 
-		WebElement dualZoneRadio = driver
+		WebElement dualZonecheckbox = driver
 				.findElement(By.xpath("//label[text()='Dual-zone air conditioning']/preceding-sibling::input"));
-		clickElementByJavascript(dualZoneRadio);
+		clickElementByJavascript(dualZonecheckbox);
 
-		Assert.assertTrue(dualZoneRadio.isSelected());
-		uncheckTheCheckbox(dualZoneRadio);
-
-	}
-
-	@Test
-	public void TC_03_Checkbox() {
+		Assert.assertTrue(dualZonecheckbox.isSelected());
+		uncheckTheCheckbox(dualZonecheckbox);
 
 	}
 
 	@Test
+	public void TC_03_RadioButton() {	
+		driver.get("http://demos.telerik.com/kendo-ui/styling/radios");
+
+	WebElement petrolRadio = driver
+			.findElement(By.xpath("//label[text()='2.0 Petrol, 147kW']/preceding-sibling::input"));
+	clickElementByJavascript(petrolRadio);
+
+	Assert.assertTrue(petrolRadio.isSelected());
+	uncheckTheRadio(petrolRadio);
+	}
+
+
 	public void TC_04_AcceptAlert() {
 		driver.get("http://daominhdam.890m.com/");
 
@@ -71,7 +78,7 @@ public class Topic_05_Button_RadioButton {
 
 	}
 
-	@Test
+	
 	public void TC_05_CancelAlert() {
 		driver.get("http://daominhdam.890m.com/#");
 
@@ -84,7 +91,7 @@ public class Topic_05_Button_RadioButton {
 		Assert.assertEquals("You clicked: Cancel", resultText.getText());
 	}
 
-	@Test
+	
 	public void TC_06_PromptAlert() {
 		driver.get("http://daominhdam.890m.com/#");
 		String name = "Automation Testing";
@@ -108,10 +115,17 @@ public class Topic_05_Button_RadioButton {
 		if (element.isSelected()) {
 			JavascriptExecutor je =(JavascriptExecutor) driver;
 			je.executeScript("arguments[0].click();", element);
-			//element.click();
+			Assert.assertTrue(!element.isSelected());
+		}
+	}	public void uncheckTheRadio(WebElement element) {
+		if (!element.isSelected()) {
+			JavascriptExecutor je =(JavascriptExecutor) driver;
+			je.executeScript("arguments[0].click();", element);
 			Assert.assertTrue(!element.isSelected());
 		}
 	}
+	
+	
 
 	@AfterClass
 	public void afterClass() {

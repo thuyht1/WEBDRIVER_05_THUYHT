@@ -27,7 +27,7 @@ public class Topic_06_UserInteractions {
 		driver = new ChromeDriver();
 	}
 
-	@Test
+	
 	public void TC_01_MoveMouseToElement() throws Exception {
 		driver.get("http://daominhdam.890m.com/");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -43,7 +43,7 @@ public class Topic_06_UserInteractions {
 			
 	}
 
-	@Test
+	
 	public void TC_02_ClickAndHoldElement() throws Exception {
 		driver.get("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -61,7 +61,7 @@ public class Topic_06_UserInteractions {
 		Assert.assertEquals(4, number);
 	}
 	
-	@Test
+	
 	public void TC_021_ClickAndHold_Random() throws Exception {
 		driver.get("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -83,7 +83,7 @@ public class Topic_06_UserInteractions {
 		
 		Assert.assertEquals(4, number);
 	}
-	@Test
+	
 	public void TC_03_DoubleClick() throws Exception {
 		driver.get("http://www.seleniumlearn.com/double-click");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -99,7 +99,7 @@ public class Topic_06_UserInteractions {
 		alert.accept();
 	}
 	
-	@Test
+
 	public void TC_04_RightClick() throws Exception {
 		driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -125,9 +125,21 @@ public class Topic_06_UserInteractions {
 		
 		Alert alert = driver.switchTo().alert();
 		Assert.assertEquals("clicked: quit", alert.getText());
-		alert.accept();
+		alert.accept();		
+	}
+	
+	@Test
+	public void TC_05_DraganDrop() throws Exception {
+		driver.get(" http://demos.telerik.com/kendo-ui/dragdrop/angular");
 		
+		WebElement sourceElement = driver.findElement(By.xpath("//div[@id='draggable']"));
+		WebElement targetElement = driver.findElement(By.xpath("//div[@id='droptarget']"));
+		Assert.assertEquals(targetElement.getText(), "Drag the small circle here.");
 		
+		Actions action = new Actions(driver);
+		action.dragAndDrop(sourceElement, targetElement).perform();
+		
+		Assert.assertEquals(targetElement.getText(), "You did great!");
 	}
 
 	@AfterClass
